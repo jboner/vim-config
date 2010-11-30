@@ -1,5 +1,6 @@
 *~
 *#
+doc/tags
 project/boot/*
 */project/build/target
 */project/boot

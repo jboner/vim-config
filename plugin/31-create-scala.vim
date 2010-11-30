@@ -5,8 +5,6 @@
 " package com.mycompany.myapp
 "
 " Author     :   Stepan Koltsov <yozh@mx1.ru>
-" Revision   : $Id: 31-create-scala.vim 17312 2009-03-16 04:02:05Z stepancheg $
-"        $URL: https://lampsvn.epfl.ch/svn-repos/scala/scala-tool-support/trunk/src/vim/plugin/31-create-scala.vim $
 
 function! MakeScalaFile()
     if exists("b:template_used") && b:template_used

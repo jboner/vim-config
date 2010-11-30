@@ -72,6 +72,28 @@
 "            highlighting for Python
 "     > 3.1: Added revisions ;) and bufexplorer.vim
 "
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" For Vim Addons
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+fun ActivateAddons()
+  set runtimepath+=~/.vim_runtime/addons/vim-addon-manager
+  try
+    call scriptmanager#Activate(["vim-addon-async","vim-addon-completion","vim-addon-json-encoding"])
+  catch /.*/
+    echoe v:exception
+  endtry
+endf
+call ActivateAddons()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" For PeepOpen
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("gui_macvim")
+  macmenu &File.New\ Tab key=<nop>
+  map <D-t> <Plug>PeepOpen
+end
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " For SBT
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -154,7 +176,7 @@ set t_vb=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable "Enable syntax hl
 
-set gfn=Inconsolata:h18
+set gfn=Anonymous\ Pro:h14
 
 " Set font according to system
 "if MySys() == "mac"
@@ -172,7 +194,7 @@ if has("gui_running")
   set background=dark
   set t_Co=256
   set background=dark
-  colorscheme twilight
+  colorscheme peaksea
 
   set nu
 else
@@ -219,6 +241,7 @@ map <leader>t2 :setlocal shiftwidth=2<cr>
 map <leader>t4 :setlocal shiftwidth=4<cr>
 map <leader>t8 :setlocal shiftwidth=4<cr>
 
+" let g:SuperTabDefaultCompletionType = "<c-x><c-o><c-p>"
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
@@ -230,8 +253,7 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 
 " When you press gv you vimgrep after the selected text
 vnoremap <silent> gv :call VisualSearch('gv')<CR>
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
-
+map <leader>g :vimgrep // **/*<left><left><left><left><left><left><left>
 
 function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
@@ -259,8 +281,6 @@ function! VisualSearch(direction) range
     let @" = l:saved_reg
 endfunction
 
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Command mode related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -282,11 +302,10 @@ cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
 " Useful on some European keyboards
-map ½ $
-imap ½ $
-vmap ½ $
-cmap ½ $
-
+map Â½ $
+imap Â½ $
+vmap Â½ $
+cmap Â½ $
 
 func! Cwd()
   let cwd = getcwd()
@@ -332,6 +351,9 @@ map <C-l> <C-W>l
 " Close the current buffer
 map <leader>bd :Bclose<cr>
 
+map <leader>bn :bn<cr>
+map <leader>bp :bp<cr>
+
 " Close all the buffers
 map <leader>ba :1,300 bd!<cr>
 
@@ -347,7 +369,6 @@ map <leader>tm :tabmove
 
 " When pressing <leader>cd switch to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>
-
 
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
@@ -376,7 +397,6 @@ try
 catch
 endtry
 
-
 """"""""""""""""""""""""""""""
 " => Statusline
 """"""""""""""""""""""""""""""
@@ -386,12 +406,10 @@ set laststatus=2
 " Format the statusline
 set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 
-
 function! CurDir()
     let curdir = substitute(getcwd(), '/Users/amir/', "~/", "g")
     return curdir
 endfunction
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Parenthesis/bracket expanding
@@ -411,12 +429,10 @@ inoremap $4 {<esc>o}<esc>O
 inoremap $q ''<esc>i
 inoremap $e ""<esc>i
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General Abbrevs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -424,7 +440,7 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 "Remap VIM 0
 map 0 ^
 
-"Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
+"Move a line of text using ALT+[jk] or Command+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
@@ -445,22 +461,19 @@ func! DeleteTrailingWS()
 endfunc
 autocmd BufWrite *.scala :call DeleteTrailingWS()
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Cope
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Do :help cope if you are unsure what cope is. It's super useful!
-map <leader>cc :botright cope<cr>
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
-
+" map <leader>cc :botright cope<cr>
+" map <leader>n :cn<cr>
+" map <leader>p :cp<cr>
 
 """"""""""""""""""""""""""""""
 " => bufExplorer plugin
 """"""""""""""""""""""""""""""
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerShowRelativePath=1
-
 
 """"""""""""""""""""""""""""""
 " => Minibuffer plugin
@@ -481,12 +494,10 @@ autocmd BufRead,BufNew :call UMiniBufExplorer
 
 map <leader>u :TMiniBufExplorer<cr>:TMiniBufExplorer<cr>
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Omni complete functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
@@ -545,7 +556,6 @@ function! JavaScriptFold()
     setl foldtext=FoldText()
 endfunction
 
-
 """"""""""""""""""""""""""""""
 " => Fuzzy finder
 """"""""""""""""""""""""""""""
@@ -555,13 +565,11 @@ try
 catch
 endtry
 
-
 """"""""""""""""""""""""""""""
 " => Vim grep
 """"""""""""""""""""""""""""""
 let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
 set grepprg=/bin/grep\ -nH
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => MISC
