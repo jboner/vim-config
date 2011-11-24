@@ -4,11 +4,11 @@
 "
 " Version: 3.3 - 21/01/10 01:05:46
 "
-" Blog_post: 
+" Blog_post:
 "       http://amix.dk/blog/post/19486#The-ultimate-vim-configuration-vimrc
 " Syntax_highlighted:
 "       http://amix.dk/vim/vimrc.html
-" Raw_version: 
+" Raw_version:
 "       http://amix.dk/vim/vimrc.txt
 "
 " How_to_Install:
@@ -67,7 +67,7 @@
 "           info -> :help fuzzyfinder@en
 "
 "  Revisions:
-"     > 3.3: Added syntax highlighting for Mako mako.vim 
+"     > 3.3: Added syntax highlighting for Mako mako.vim
 "     > 3.2: Turned on python_highlight_all for better syntax
 "            highlighting for Python
 "     > 3.1: Added revisions ;) and bufexplorer.vim
@@ -87,6 +87,11 @@ endf
 call ActivateAddons()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" For NERDTree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " For PeepOpen
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("gui_macvim")
@@ -97,7 +102,7 @@ end
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " For SBT
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set makeprg=sbt-no-color\ test-compile
+set makeprg=sbt-no-color\ compile
 if exists("current_compiler")
   finish
 endif
@@ -176,18 +181,7 @@ set t_vb=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable "Enable syntax hl
 
-set gfn=Anonymous\ Pro:h14
-
-" Set font according to system
-"if MySys() == "mac"
-"  set gfn=Bitstream\ Vera\ Sans\ Mono:h13
-"  set shell=/bin/bash
-"elseif MySys() == "windows"
-"  set gfn=Bitstream\ Vera\ Sans\ Mono:h10
-"elseif MySys() == "linux"
-"  set gfn=Monospace\ 10
-"  set shell=/bin/bash
-"endif
+set gfn=Consolas:h14
 
 if has("gui_running")
   set guioptions-=T
@@ -200,7 +194,6 @@ if has("gui_running")
 else
   colorscheme zellner
   set background=dark
-  
   set nonu
 endif
 
@@ -259,7 +252,7 @@ function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
     unmenu Foo
-endfunction 
+endfunction
 
 " From an idea by Michael Naumann
 function! VisualSearch(direction) range
@@ -309,7 +302,7 @@ cmap Â½ $
 
 func! Cwd()
   let cwd = getcwd()
-  return "e " . cwd 
+  return "e " . cwd
 endfunc
 
 func! DeleteTillSlash()
@@ -325,7 +318,7 @@ func! DeleteTillSlash()
     else
       let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\\]\\).*\[\\\\\]", "\\1", "")
     endif
-  endif   
+  endif
   return g:cmd_edited
 endfunc
 
@@ -341,6 +334,10 @@ endfunc
 map <space> /
 map <c-space> ?
 map <silent> <leader><cr> :noh<cr>
+
+" CTR-TAB
+map <C-Tab> :bnext<cr>
+map <C-S-Tab> :bprevious<cr>
 
 " Smart way to move btw. windows
 map <C-j> <C-W>j
@@ -363,9 +360,9 @@ map <C-left> :bp<cr>
 
 " Tab configuration
 map <leader>tn :tabnew %<cr>
-map <leader>te :tabedit 
+map <leader>te :tabedit
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
+map <leader>tm :tabmove
 
 " When pressing <leader>cd switch to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>
@@ -390,7 +387,7 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
-" Specify the behavior when switching between buffers 
+" Specify the behavior when switching between buffers
 try
   set switchbuf=usetab
   set stal=2
@@ -522,14 +519,14 @@ au FileType python syn keyword pythonDecorator True None False self
 au BufNewFile,BufRead *.jinja set syntax=htmljinja
 au BufNewFile,BufRead *.mako set ft=mako
 
-au FileType python inoremap <buffer> $r return 
-au FileType python inoremap <buffer> $i import 
-au FileType python inoremap <buffer> $p print 
+au FileType python inoremap <buffer> $r return
+au FileType python inoremap <buffer> $i import
+au FileType python inoremap <buffer> $p print
 au FileType python inoremap <buffer> $f #--- PH ----------------------------------------------<esc>FP2xi
-au FileType python map <buffer> <leader>1 /class 
-au FileType python map <buffer> <leader>2 /def 
-au FileType python map <buffer> <leader>C ?class 
-au FileType python map <buffer> <leader>D ?def 
+au FileType python map <buffer> <leader>1 /class
+au FileType python map <buffer> <leader>2 /def
+au FileType python map <buffer> <leader>C ?class
+au FileType python map <buffer> <leader>D ?def
 
 
 """"""""""""""""""""""""""""""
@@ -542,10 +539,10 @@ au FileType javascript setl nocindent
 au FileType javascript imap <c-t> AJS.log();<esc>hi
 au FileType javascript imap <c-a> alert();<esc>hi
 
-au FileType javascript inoremap <buffer> $r return 
+au FileType javascript inoremap <buffer> $r return
 au FileType javascript inoremap <buffer> $f //--- PH ----------------------------------------------<esc>FP2xi
 
-function! JavaScriptFold() 
+function! JavaScriptFold()
     setl foldmethod=syntax
     setl foldlevelstart=1
     syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
