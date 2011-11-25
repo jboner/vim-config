@@ -89,7 +89,7 @@ call ActivateAddons()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " For NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+map <Leader>nt <plug>NERDTreeTabsToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " For PeepOpen
@@ -181,18 +181,18 @@ set t_vb=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable "Enable syntax hl
 
-set gfn=Consolas:h14
+set gfn=Consolas:h15
 
 if has("gui_running")
   set guioptions-=T
   set background=dark
   set t_Co=256
   set background=dark
-  colorscheme peaksea
+  colorscheme twilight
 
   set nu
 else
-  colorscheme zellner
+  colorscheme twilight
   set background=dark
   set nonu
 endif
@@ -462,9 +462,9 @@ autocmd BufWrite *.scala :call DeleteTrailingWS()
 " => Cope
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Do :help cope if you are unsure what cope is. It's super useful!
-" map <leader>cc :botright cope<cr>
-" map <leader>n :cn<cr>
-" map <leader>p :cp<cr>
+map <leader>cc :botright cope<cr>
+map <leader>n :cn<cr>
+map <leader>p :cp<cr>
 
 """"""""""""""""""""""""""""""
 " => bufExplorer plugin
