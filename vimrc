@@ -1,79 +1,4 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer: amix the lucky stiff
-"             http://amix.dk - amix@amix.dk
-"
-" Version: 3.3 - 21/01/10 01:05:46
-"
-" Blog_post:
-"       http://amix.dk/blog/post/19486#The-ultimate-vim-configuration-vimrc
-" Syntax_highlighted:
-"       http://amix.dk/vim/vimrc.html
-" Raw_version:
-"       http://amix.dk/vim/vimrc.txt
-"
-" How_to_Install:
-"    $ mkdir ~/.vim_runtime
-"    $ svn co svn://orangoo.com/vim ~/.vim_runtime
-"    $ cat ~/.vim_runtime/install.sh
-"    $ sh ~/.vim_runtime/install.sh <system>
-"      <sytem> can be `mac`, `linux` or `windows`
-"
-" How_to_Upgrade:
-"    $ svn update ~/.vim_runtime
-"
-" Sections:
-"    -> General
-"    -> VIM user interface
-"    -> Colors and Fonts
-"    -> Files and backups
-"    -> Text, tab and indent related
-"    -> Visual mode related
-"    -> Command mode related
-"    -> Moving around, tabs and buffers
-"    -> Statusline
-"    -> Parenthesis/bracket expanding
-"    -> General Abbrevs
-"    -> Editing mappings
-"
-"    -> Cope
-"    -> Minibuffer plugin
-"    -> Omni complete functions
-"    -> Python section
-"    -> JavaScript section
-"
-" Plugins_Included:
-"     > minibufexpl.vim - http://www.vim.org/scripts/script.php?script_id=159
-"       Makes it easy to get an overview of buffers:
-"           info -> :e ~/.vim_runtime/plugin/minibufexpl.vim
-"
-"     > bufexplorer - http://www.vim.org/scripts/script.php?script_id=42
-"       Makes it easy to switch between buffers:
-"           info -> :help bufExplorer
-"
-"     > yankring.vim - http://www.vim.org/scripts/script.php?script_id=1234
-"       Emacs's killring, useful when using the clipboard:
-"           info -> :help yankring
-"
-"     > surround.vim - http://www.vim.org/scripts/script.php?script_id=1697
-"       Makes it easy to work with surrounding text:
-"           info -> :help surround
-"
-"     > snipMate.vim - http://www.vim.org/scripts/script.php?script_id=2540
-"       Snippets for many languages (similar to TextMate's):
-"           info -> :help snipMate
-"
-"     > fuzzyfinder - http://www.vim.org/scripts/script.php?script_id=1984
-"       Find files fast (similar to TextMate's feature):
-"           info -> :help fuzzyfinder@en
-"
-"  Revisions:
-"     > 3.3: Added syntax highlighting for Mako mako.vim
-"     > 3.2: Turned on python_highlight_all for better syntax
-"            highlighting for Python
-"     > 3.1: Added revisions ;) and bufexplorer.vim
-"
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " For Vim Addons
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 fun ActivateAddons()
@@ -85,6 +10,11 @@ fun ActivateAddons()
   endtry
 endf
 call ActivateAddons()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" For TagBar
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <Leader>tb :TagbarToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " For NERDTree
@@ -126,8 +56,6 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
 
@@ -139,7 +67,6 @@ map <leader>e :e! ~/.vim_runtime/vimrc<cr>
 
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -175,7 +102,6 @@ set noerrorbells
 set novisualbell
 set t_vb=
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -189,7 +115,6 @@ if has("gui_running")
   set t_Co=256
   set background=dark
   colorscheme twilight
-
   set nu
 else
   colorscheme twilight
@@ -205,7 +130,6 @@ endtry
 
 set ffs=unix,dos,mac "Default file types
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files and backups
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -213,7 +137,6 @@ set ffs=unix,dos,mac "Default file types
 set nobackup
 set nowb
 set noswapfile
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -239,7 +162,6 @@ map <leader>t8 :setlocal shiftwidth=4<cr>
 """"""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""
-" Really useful!
 "  In visual mode when you press * or # to search for the current selection
 vnoremap <silent> * :call VisualSearch('f')<CR>
 vnoremap <silent> # :call VisualSearch('b')<CR>
@@ -326,7 +248,6 @@ func! CurrentFileDir(cmd)
   return a:cmd . " " . expand("%:p:h") . "/"
 endfunc
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -345,8 +266,12 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" Navigate links in help with ENTER and back with Backspace
+nmap <buffer> <CR> <C-]>
+nmap <buffer> <BS> <C-T>
+
 " Close the current buffer
-map <leader>bd :Bclose<cr>
+map <leader>bc :Bclose<cr>
 
 map <leader>bn :bn<cr>
 map <leader>bp :bp<cr>
@@ -355,8 +280,8 @@ map <leader>bp :bp<cr>
 map <leader>ba :1,300 bd!<cr>
 
 " Use the arrows to something usefull
-map <C-right> :bn<cr>
-map <C-left> :bp<cr>
+map <C-right> <ESC>:bn<CR>
+map <C-left> <ESC>:bp<CR>
 
 " Tab configuration
 map <leader>tn :tabnew %<cr>
@@ -466,36 +391,6 @@ map <leader>cc :botright cope<cr>
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 
-""""""""""""""""""""""""""""""
-" => bufExplorer plugin
-""""""""""""""""""""""""""""""
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerShowRelativePath=1
-
-""""""""""""""""""""""""""""""
-" => Minibuffer plugin
-""""""""""""""""""""""""""""""
-let g:miniBufExplModSelTarget = 1
-let g:miniBufExplorerMoreThanOne = 2
-let g:miniBufExplModSelTarget = 0
-let g:miniBufExplUseSingleClick = 1
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplVSplit = 25
-let g:miniBufExplSplitBelow=1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchWindows = 1
-
-let g:bufExplorerSortBy = "name"
-
-autocmd BufRead,BufNew :call UMiniBufExplorer
-
-map <leader>u :TMiniBufExplorer<cr>:TMiniBufExplorer<cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Omni complete functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -507,51 +402,6 @@ map <leader>sn ]s
 map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
-
-
-""""""""""""""""""""""""""""""
-" => Python section
-""""""""""""""""""""""""""""""
-au FileType python set nocindent
-let python_highlight_all = 1
-au FileType python syn keyword pythonDecorator True None False self
-
-au BufNewFile,BufRead *.jinja set syntax=htmljinja
-au BufNewFile,BufRead *.mako set ft=mako
-
-au FileType python inoremap <buffer> $r return
-au FileType python inoremap <buffer> $i import
-au FileType python inoremap <buffer> $p print
-au FileType python inoremap <buffer> $f #--- PH ----------------------------------------------<esc>FP2xi
-au FileType python map <buffer> <leader>1 /class
-au FileType python map <buffer> <leader>2 /def
-au FileType python map <buffer> <leader>C ?class
-au FileType python map <buffer> <leader>D ?def
-
-
-""""""""""""""""""""""""""""""
-" => JavaScript section
-"""""""""""""""""""""""""""""""
-au FileType javascript call JavaScriptFold()
-au FileType javascript setl fen
-au FileType javascript setl nocindent
-
-au FileType javascript imap <c-t> AJS.log();<esc>hi
-au FileType javascript imap <c-a> alert();<esc>hi
-
-au FileType javascript inoremap <buffer> $r return
-au FileType javascript inoremap <buffer> $f //--- PH ----------------------------------------------<esc>FP2xi
-
-function! JavaScriptFold()
-    setl foldmethod=syntax
-    setl foldlevelstart=1
-    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-
-    function! FoldText()
-    return substitute(getline(v:foldstart), '{.*', '{...}', '')
-    endfunction
-    setl foldtext=FoldText()
-endfunction
 
 """"""""""""""""""""""""""""""
 " => Fuzzy finder
@@ -576,3 +426,4 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 "Quickly open a buffer for scripbble
 map <leader>q :e ~/buffer<cr>
+

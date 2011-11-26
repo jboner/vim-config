@@ -1,0 +1,74 @@
+snippet trace
+	println("==================================================")
+	println("============> {${1} :" + ${1})
+snippet print
+	println("============> " + ${1})
+snippet pu
+	public
+snippet po
+	protected
+snippet pr
+	private
+snippet fi
+	final
+snippet ab
+	abstract
+snippet re
+	return
+snippet ca
+	catch {
+	  case ${1:e} => ${2}
+	}
+snippet th
+	throw 
+snippet sy
+	synchronized
+snippet im
+	import
+snippet map
+	map {${1} => ${2}}
+snippet flatMap
+	flatMap {${1} => ${2}}
+snippet filter
+	filter {${1} => ${2}}
+snippet fore
+	foreach {${1} => ${2}}
+snippet if
+	if (${1}) ${2}
+snippet el
+	else 
+snippet elif
+	else if (${1}) ${2}
+snippet wh
+	while (${1}) ${2}
+snippet for1
+	for (${1} <- ${2}) {${3}}
+snippet for2
+	for {
+	  ${1} <- ${2}
+	  ${3} <- ${4}
+	} {${5}}
+snippet yi
+	yield {${1}}
+snippet ma
+	match {
+	  ${1}
+	}
+snippet cs
+	case ${1:_} => ${2}
+snippet cl
+	class ${1:`Filename("", "untitled")`} ${2}
+snippet tr
+	trait ${1:`Filename("", "untitled")`} ${2:extends Parent}${3}
+snippet m0
+	def ${1:method}: ${2:Unit} = ${3}
+snippet m1
+	def ${1:method}(${2}: ${3}): ${4:Unit} = {${5}}
+snippet m2
+	def ${1:method}(${2}: ${3}, ${4}: ${5}): ${6:Unit} = {${7}}
+snippet vl
+	val ${1}: ${2} = ${3}
+snippet vr
+	var ${1}: ${2} = ${3}
+snippet as
+	assert ${1:test} : "${2:Failure message}";${3}
