@@ -27,6 +27,7 @@ Registers
 
 Buffers
 -------
+,mr     List of most recently used files
 ,t		Fuzzy find file
 C-w o        	Maximize buffer
 C-tab		Next buffer
@@ -93,7 +94,7 @@ gg=G		Format the whole buffer
 ,e		Edit vimrc
 ,t2		Set shiftwidth to 2 (t2 or t4)
 ,q		Open scratchpad
-,m		Remove Windows ^M
+,wm		Remove Windows ^M
 
 Grep/Search
 ----

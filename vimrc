@@ -74,7 +74,7 @@ map h2 yypVr-o
 map h3 yypVr~o
 
 " Diff windows should be in sync
-set scrollbind
+" set scrollbind
 
 " Toggle fold
 nnoremap <leader>z za
@@ -272,6 +272,9 @@ endfunc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MRU - list of most recently used files
+map <leader>mr :MRU<CR>
+
 " Map space to / (search) and c-space to ? (backgwards search)
 map <space> /
 map <c-space> ?
@@ -427,11 +430,27 @@ map <leader>s? z=
 """"""""""""""""""""""""""""""
 " => Fuzzy finder
 """"""""""""""""""""""""""""""
+let g:fuf_file_exclude = '\v\~$'
+\ . '|\.(o|png|PNG|JPG|class|CLASS|jpg|exe|bak|swp|jar|war|ear|zip|tar|gz|bz2)$'
+\ . '|(^|[/\\])\.(svn|hg|git|bzr)($|[/\\])'
+\ . '|.*[/\\]$' 
+
+“call fuf#setOneTimeVariables(['g:fuf_coveragefile_globPatterns', ['**/*.conf', '**/*.scala', '**/*.java', '**/*.rst', '**/*.sbt', '**/*.sh']])
+“\ | FufCoverageFile
+
 try
     call fuf#defineLaunchCommand('FufCWD', 'file', 'fnamemodify(getcwd(), ''%:p:h'')')
     map <leader>t :FufCWD **/<CR>
 catch
 endtry
+
+map <leader>b :FufBuffer<CR>
+map <leader>f :FufFile<CR>
+map <leader>l :FufLine<CR>
+map <leader>dd :FufDir<CR>
+map <leader>dr :FufDirWithFullCwd<CR>
+map <leader>dc :FufDirWithCurrentBufferDir<CR>
+"map <leader>mr :FufMruFile<CR>
 
 """"""""""""""""""""""""""""""
 " => Vim grep
@@ -443,7 +462,7 @@ set grepprg=/bin/grep\ -nH
 " => MISC
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+noremap <Leader>wm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 "Quickly open a buffer for scripbble
 map <leader>q :e ~/buffer<cr>
