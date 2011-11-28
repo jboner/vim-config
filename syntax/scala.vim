@@ -1,4 +1,5 @@
 " Vim syntax file
+
 " Language   : Scala (http://scala-lang.org/)
 " Maintainers: Stefan Matthias Aust, Julien Wetterwald
 " Last Change: 2007 June 13
@@ -11,6 +12,8 @@ endif
 
 syn case match
 syn sync minlines=50
+
+syn keyword scalaTodo TODO todo FIXME fixme XXX xxx
 
 " most Scala keywords
 syn keyword scalaKeyword case
@@ -179,6 +182,7 @@ hi link scalaClassName Special
 hi link scalaClassSpecializer Special
 hi link scalaConstructor Special
 hi link scalaConstructorSpecializer scalaConstructor
+hi link scalaTodo Error
 
 let b:current_syntax = "scala"
 

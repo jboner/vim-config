@@ -68,6 +68,17 @@ map <leader>e :e! ~/.vim_runtime/vimrc<cr>
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
 
+" Create reST style headings
+map h1 yypVr=o
+map h2 yypVr-o
+map h3 yypVr~o
+
+" Diff windows should be in sync
+set scrollbind
+
+" Toggle fold
+nnoremap <leader>z za
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -131,6 +142,16 @@ endtry
 set ffs=unix,dos,mac "Default file types
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Highlight matching 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Match TODOS and FIXMEs
+highlight MyMatchGroup ctermbg=darkred guibg=darkred ctermfg=white guifg=white
+syntax match MyMatchGroup /TODO/
+syntax match MyMatchGroup /todo/
+syntax match MyMatchGroup /FIXME/
+syntax match MyMatchGroup /fixme/
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files and backups
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git anyway...
@@ -142,16 +163,16 @@ set noswapfile
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set expandtab
-set shiftwidth=4
+set shiftwidth=2
 set tabstop=4
 set smarttab
+set smartindent
+set ai "Auto indent
+set wrap "Wrap lines
+filetype indent on
 
 set lbr
 set tw=500
-
-set ai "Auto indent
-set si "Smart indet
-set wrap "Wrap lines
 
 map <leader>t2 :setlocal shiftwidth=2<cr>
 map <leader>t4 :setlocal shiftwidth=4<cr>
