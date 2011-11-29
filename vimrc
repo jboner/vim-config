@@ -1,53 +1,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" For Vim Addons
+""""""""""""""""""" @jboner's Vim Config """"""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-fun ActivateAddons()
-  set runtimepath+=~/.vim_runtime/addons/vim-addon-manager
-  try
-    call scriptmanager#Activate(["vim-addon-async","vim-addon-completion","vim-addon-json-encoding"])
-  catch /.*/
-    echoe v:exception
-  endtry
-endf
-call ActivateAddons()
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" For TagBar
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>tb :TagbarToggle<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" For NERDTree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>nt <plug>NERDTreeTabsToggle<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" For PeepOpen
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("gui_macvim")
-  macmenu &File.New\ Tab key=<nop>
-  map <D-t> <Plug>PeepOpen
-end
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" For SBT
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set makeprg=sbt-no-color\ compile
-if exists("current_compiler")
-  finish
-endif
-let current_compiler = "sbt"
-
-set errorformat=%E[error]\ %f:%l:\ %m,%C[error]\ %p^,%-C%.%#,%Z,
-               \%W[warn]\ %f:%l:\ %m,%C[warn]\ %p^,%-C%.%#,%Z,
-               \%-G%.%#
-set errorfile=target/error
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
-set history=300
+set history=500
 
 " Enable filetype plugin
 filetype plugin on
@@ -68,13 +27,6 @@ map <leader>e :e! ~/.vim_runtime/vimrc<cr>
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
 
-" Create reST style headings
-map h1 yypVr#o
-map h2 yypVr=o
-map h3 yypVr-o
-map h4 yypVr^o
-map h5 yypVr~o
-
 " Diff windows should be in sync
 " set scrollbind
 
@@ -84,33 +36,19 @@ nnoremap <leader>z za
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set 7 lines to the curors - when moving vertical..
-set so=7
-
-set wildmenu "Turn on WiLd menu
-
-set ruler "Always show current position
-
-set cmdheight=2 "The commandbar height
-
-set hid "Change buffer - without saving
-
-" Set backspace config
-set backspace=eol,start,indent
+set so=7                       " Set 7 lines to the curors - when moving vertical
+set wildmenu                   "Turn on WiLd menu
+set ruler                      "Always show current position
+set cmdheight=2                "The commandbar height
+set hid                        "Change buffer - without saving
+set backspace=eol,start,indent "Set backspace config
 set whichwrap+=<,>,h,l
-
-set ignorecase "Ignore case when searching
-
-set hlsearch "Highlight search things
-
-set incsearch "Make search act like search in modern browsers
-
-set magic "Set magic on, for regular expressions
-
-set showmatch "Show matching bracets when text indicator is over them
-set mat=2 "How many tenths of a second to blink
-
-" No sound on errors
+set ignorecase                 "Ignore case when searching
+set hlsearch                   "Highlight search things
+set incsearch                  "Make search act like search in modern browsers
+set magic                      "Set magic on, for regular expressions
+set showmatch                  "Show matching bracets when text indicator is over them
+set mat=2                      "How many tenths of a second to blink
 set noerrorbells
 set novisualbell
 set t_vb=
@@ -118,7 +56,8 @@ set t_vb=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syntax enable "Enable syntax hl
+" Enable syntax highlighting
+syntax enable 
 
 set gfn=Consolas:h15
 
@@ -137,11 +76,43 @@ endif
 
 set encoding=utf8
 try
-    lang en_US
+  lang en_US
 catch
 endtry
 
 set ffs=unix,dos,mac "Default file types
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" For TagBar
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <Leader>tb :TagbarToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" For NERDTree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <Leader>nt <plug>NERDTreeTabsToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" For PeepOpen
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("gui_macvim")
+  macmenu &File.New\ Tab key=<nop>
+  map <D-t> <Plug>PeepOpen
+end
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" For SBT - Simple Build Tool for Scala
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set makeprg=sbt-no-color\ compile
+if exists("current_compiler")
+  finish
+endif
+let current_compiler = "sbt"
+
+set errorformat=%E[error]\ %f:%l:\ %m,%C[error]\ %p^,%-C%.%#,%Z,
+               \%W[warn]\ %f:%l:\ %m,%C[warn]\ %p^,%-C%.%#,%Z,
+               \%-G%.%#
+set errorfile=target/error
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Highlight matching 
@@ -171,10 +142,9 @@ set smarttab
 set smartindent
 set ai "Auto indent
 set wrap "Wrap lines
-filetype indent on
-
 set lbr
 set tw=500
+filetype indent on
 
 map <leader>t2 :setlocal shiftwidth=2<cr>
 map <leader>t4 :setlocal shiftwidth=4<cr>
@@ -194,29 +164,29 @@ vnoremap <silent> gv :call VisualSearch('gv')<CR>
 map <leader>g :vimgrep // **/*<left><left><left><left><left><left><left>
 
 function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
+  exe "menu Foo.Bar :" . a:str
+  emenu Foo.Bar
+  unmenu Foo
 endfunction
 
 " From an idea by Michael Naumann
 function! VisualSearch(direction) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
+  let l:saved_reg = @"
+  execute "normal! vgvy"
 
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
+  let l:pattern = escape(@", '\\/.*$^~[]')
+  let l:pattern = substitute(l:pattern, "\n$", "", "")
 
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
+  if a:direction == 'b'
+      execute "normal ?" . l:pattern . "^M"
+  elseif a:direction == 'gv'
+      call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
+  elseif a:direction == 'f'
+      execute "normal /" . l:pattern . "^M"
+  endif
 
-    let @/ = l:pattern
-    let @" = l:saved_reg
+  let @/ = l:pattern
+  let @" = l:saved_reg
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -232,10 +202,9 @@ cno $c e <C-\>eCurrentFileDir("e")<cr>
 cno $q <C-\>eDeleteTillSlash()<cr>
 
 " Bash like keys for the command line
-cnoremap <C-A>		<Home>
-cnoremap <C-E>		<End>
-cnoremap <C-K>		<C-U>
-
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+cnoremap <C-K> <C-U>
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
@@ -320,22 +289,22 @@ map <leader>cd :cd %:p:h<cr>
 
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
+  let l:currentBufNum = bufnr("%")
+  let l:alternateBufNum = bufnr("#")
 
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
+  if buflisted(l:alternateBufNum)
+    buffer #
+  else
+    bnext
+  endif
 
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
+  if bufnr("%") == l:currentBufNum
+    new
+  endif
 
-   if buflisted(l:currentBufNum)
-     execute("bdelete! ".l:currentBufNum)
-   endif
+  if buflisted(l:currentBufNum)
+    execute("bdelete! ".l:currentBufNum)
+  endif
 endfunction
 
 " Specify the behavior when switching between buffers
@@ -355,8 +324,8 @@ set laststatus=2
 set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 
 function! CurDir()
-    let curdir = substitute(getcwd(), '/Users/amir/', "~/", "g")
-    return curdir
+  let curdir = substitute(getcwd(), '/Users/amir/', "~/", "g")
+  return curdir
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -378,17 +347,12 @@ inoremap $q ''<esc>i
 inoremap $e ""<esc>i
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General Abbrevs
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Remap VIM 0
+" Remap VIM 0 to jump to beginning of text rather than line
 map 0 ^
 
-"Move a line of text using ALT+[jk] or Command+[jk] on mac
+" Move a line of text using ALT+[jk] or Command+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
@@ -401,7 +365,14 @@ if MySys() == "mac"
   vmap <D-k> <M-k>
 endif
 
-"Delete trailing white space, useful for Python ;)
+" Create reST style headings
+map h1 yypVr#o<esc>
+map h2 yypVr=o<esc>
+map h3 yypVr-o<esc>
+map h4 yypVr^o<esc>
+map h5 yypVr~o<esc>
+
+" Delete trailing whitespace when writing *.scala files
 func! DeleteTrailingWS()
   exe "normal mz"
   %s/\s\+$//ge
@@ -409,10 +380,15 @@ func! DeleteTrailingWS()
 endfunc
 autocmd BufWrite *.scala :call DeleteTrailingWS()
 
+" Remove the Windows ^M - when the encodings gets messed up
+noremap <Leader>wm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+"Quickly open a buffer for scripbble
+map <leader>q :e ~/buffer<cr>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Cope
+" => Cope - navigate errors
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Do :help cope if you are unsure what cope is. It's super useful!
 map <leader>cc :botright cope<cr>
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
@@ -437,14 +413,8 @@ let g:fuf_file_exclude = '\v\~$'
 \ . '|(^|[/\\])\.(svn|hg|git|bzr)($|[/\\])'
 \ . '|.*[/\\]$' 
 
-" call fuf#setOneTimeVariables(['g:fuf_coveragefile_globPatterns', ['**/*.conf', '**/*.scala', '**/*.java', '**/*.rst', '**/*.sbt', '**/*.sh']])
-" \ | FufCoverageFile
-
-try
-    call fuf#defineLaunchCommand('FufCWD', 'file', 'fnamemodify(getcwd(), ''%:p:h'')')
-    map <leader>t :FufCWD **/<CR>
-catch
-endtry
+call fuf#defineLaunchCommand('FufCWD', 'file', 'fnamemodify(getcwd(), ''%:p:h'')')
+map <leader>t :FufCWD **/<CR>
 
 map <leader>b :FufBuffer<CR>
 map <leader>f :FufFile<CR>
@@ -452,7 +422,10 @@ map <leader>l :FufLine<CR>
 map <leader>dd :FufDir<CR>
 map <leader>dr :FufDirWithFullCwd<CR>
 map <leader>dc :FufDirWithCurrentBufferDir<CR>
+
 "map <leader>mr :FufMruFile<CR>
+" call fuf#setOneTimeVariables(['g:fuf_coveragefile_globPatterns', ['**/*.conf', '**/*.scala', '**/*.java', '**/*.rst', '**/*.sbt', '**/*.sh']])
+" \ | FufCoverageFile
 
 """"""""""""""""""""""""""""""
 " => Vim grep
@@ -464,13 +437,4 @@ set grepprg=/bin/grep\ -nH
 " => Yank Ring
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>yr :YRShow<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => MISC
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>wm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-"Quickly open a buffer for scripbble
-map <leader>q :e ~/buffer<cr>
 
