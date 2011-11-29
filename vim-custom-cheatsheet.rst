@@ -201,3 +201,5 @@ Diff
 vim -d f1 f2	Diff files
 :diffsplit file	
 :vert diffsplit file
+:set scrollbind 	Set windows to be in sync
+

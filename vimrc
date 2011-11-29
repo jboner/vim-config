@@ -69,9 +69,11 @@ map <leader>e :e! ~/.vim_runtime/vimrc<cr>
 autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
 
 " Create reST style headings
-map h1 yypVr=o
-map h2 yypVr-o
-map h3 yypVr~o
+map h1 yypVr#o
+map h2 yypVr=o
+map h3 yypVr-o
+map h4 yypVr^o
+map h5 yypVr~o
 
 " Diff windows should be in sync
 " set scrollbind
@@ -435,8 +437,8 @@ let g:fuf_file_exclude = '\v\~$'
 \ . '|(^|[/\\])\.(svn|hg|git|bzr)($|[/\\])'
 \ . '|.*[/\\]$' 
 
-“call fuf#setOneTimeVariables(['g:fuf_coveragefile_globPatterns', ['**/*.conf', '**/*.scala', '**/*.java', '**/*.rst', '**/*.sbt', '**/*.sh']])
-“\ | FufCoverageFile
+" call fuf#setOneTimeVariables(['g:fuf_coveragefile_globPatterns', ['**/*.conf', '**/*.scala', '**/*.java', '**/*.rst', '**/*.sbt', '**/*.sh']])
+" \ | FufCoverageFile
 
 try
     call fuf#defineLaunchCommand('FufCWD', 'file', 'fnamemodify(getcwd(), ''%:p:h'')')
