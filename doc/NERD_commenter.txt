@@ -88,7 +88,7 @@ Comment out the current line or text selected in visual mode.
 
 
 [count]<leader>cn |NERDComNestedComment|
-Same as <leader>cc but forces nesting.
+	
 
 
 [count]<leader>c<space> |NERDComToggleComment|

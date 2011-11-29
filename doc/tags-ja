@@ -141,3 +141,11 @@ g:fuf_taggedfile_prompt	fuf.jax	/*g:fuf_taggedfile_prompt*
 g:fuf_taggedfile_switchOrder	fuf.jax	/*g:fuf_taggedfile_switchOrder*
 g:fuf_timeFormat	fuf.jax	/*g:fuf_timeFormat*
 g:fuf_useMigemo	fuf.jax	/*g:fuf_useMigemo*
+l9	l9.jax	/*l9*
+l9-about	l9.jax	/*l9-about*
+l9-author	l9.jax	/*l9-author*
+l9-contact	l9.jax	/*l9-contact*
+l9-installation	l9.jax	/*l9-installation*
+l9-introduction	l9.jax	/*l9-introduction*
+l9-usage	l9.jax	/*l9-usage*
+l9.txt	l9.jax	/*l9.txt*

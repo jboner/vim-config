@@ -476,6 +476,15 @@ global-example	yankring.txt	/*global-example*
 i_CTRL-G_S	surround.txt	/*i_CTRL-G_S*
 i_CTRL-G_s	surround.txt	/*i_CTRL-G_s*
 i_CTRL-R_<Tab>	snipMate.txt	/*i_CTRL-R_<Tab>*
+l9	l9.txt	/*l9*
+l9-about	l9.txt	/*l9-about*
+l9-author	l9.txt	/*l9-author*
+l9-changelog	l9.txt	/*l9-changelog*
+l9-contact	l9.txt	/*l9-contact*
+l9-installation	l9.txt	/*l9-installation*
+l9-introduction	l9.txt	/*l9-introduction*
+l9-usage	l9.txt	/*l9-usage*
+l9.txt	l9.txt	/*l9.txt*
 list-snippets	snipMate.txt	/*list-snippets*
 manifest()	scala_info.txt	/*manifest()*
 multi_snip	snipMate.txt	/*multi_snip*

@@ -1,3 +1,7 @@
+Vim Cheat Sheet
+===============
+Cheat sheet for my custom (and some standard) Vim commands.
+
 Navigation
 ----------
 %   		Match x
@@ -18,16 +22,9 @@ S		Replace line
 s		Replace char
 .		Repeat latest edit
 
-Registers
----------
-“a y		Yank into register a (replace)
-“A y		Yank into register A (append)
-“a p		Paste from register a
-:registers	Show all registers
-
 Buffers
 -------
-,mr     List of most recently used files
+,mr     	List of most recently used files
 ,t		Fuzzy find file
 C-w o        	Maximize buffer
 C-tab		Next buffer
@@ -44,6 +41,31 @@ C-l		Go to right window
 C-h		Go to left window
 C-j
 C-k
+
+Fuzzy Finder
+-----------
+,t		Find file recursively from CWD
+,b 		:FufBuffer
+,f 		:FufFile
+,l 		:FufLine
+,mr		:FufMruFile
+,dd 		:FufDir
+,dr 		:FufDirWithFullCwd
+,dc 		:FufDirWithCurrentBufferDir
+
+Session
+-------
+:SaveSession <tab>	Save session
+:OpenSession <tab>	Load session
+:ViewSession
+:CloseSession
+
+Registers
+---------
+“a y		Yank into register a (replace)
+“A y		Yank into register A (append)
+“a p		Paste from register a
+:registers	Show all registers
 
 Marks
 -----
@@ -69,11 +91,34 @@ cd		Set dir as working dir
 O		Open file/folder
 m		Show menu
 
+NERDCommmenter
+--------------
+,cc		Comment out current line or selected lines in visual mode
+,cn		Same as ,cc but forces nesting
+,c <space>	Toggles the comment state of the selected line(s)
+,cs		Comments out the selected lines ‘sexily’
+‘cu		Uncomments the selected line(s).
+
 LustyJuggler
 ------------
 ,lj		(Quick) jump to open buffer (LustyJuggler)
-,lb		Jump to buffer (LustyJuggler)
-,lf		Jump to file (LustyJuggler)
+,lf  		Opens the filesystem explorer.
+,lr  		Opens the filesystem explorer from directory of the current file.
+,lb  		Opens the buffer explorer
+,lg  		Opens the buffer grep, for searching through all loaded buffers
+
+Yank Ring
+---------
+,yr		Opens list of yank ring
+C-P		Moves backward through the yank ring (after an initial paste)
+C-N		Moves forward through the yank ring (after an initial paste)
+
+Surround
+--------
+ds”		Delete surrounding “
+cs{(		Change surrounding { to (
+ysiw(		Wrap word in (
+yss{		Wrap line in {
 
 Compiling
 ---------
@@ -83,13 +128,11 @@ C-L		Show error list
 ,n		Jump to next error
 ,p		Jump to previous error
 
-
 Misc
 ----
 ,cd		Set current file dir to current dir
 gq <movement>	Format section over ‘movement’
 ,w		Save buffer
-h1, h2, h3	Create reST style headings
 gg=G		Format the whole buffer
 ,e		Edit vimrc
 ,t2		Set shiftwidth to 2 (t2 or t4)
@@ -98,6 +141,7 @@ gg=G		Format the whole buffer
 
 Grep/Search
 ----
+:Ack <pattern>	Search with ack
 space		Search backwards
 C-space		Search forwards
 ,g		Vimgrep
@@ -116,6 +160,36 @@ g+		Traverse all undos forwards
 :later Nm
 :later Nh
 
+Spelling
+--------
+,ss		Toggle spelling
+,sn		Next error
+‘sp		Previous error
+
+Folding
+-------
+zc		Close fold
+zo		Open fold
+zM		Close all folds
+zR		Open all folds
+za		Toggle fold
+‘z		Toggle fold
+
+RestructuredText
+----------------
+h1,h2,h3,h4,h5	Create reST style headings
+:Vstm		Open menu
+:Vst head	Show heading styles
+:Vst doc	Show table of contents
+:Vst link	Show all links
+:Vst pdf|html|xml|latex
+
+ConqueTerm
+----------
+:ConqueTerm zsh		Opens a terminal
+:ConqueTermSplit zsh	Opens a terminal in horizontal split
+:ConqueTermVSplit zsh 	Opens a terminal in vertical split
+
 Remote
 ------
 :Nread remote.server.com jboner PASSWD path
@@ -127,17 +201,3 @@ Diff
 vim -d f1 f2	Diff files
 :diffsplit file	
 :vert diffsplit file
-
-Spelling
---------
-,ss		Toggle spelling
-,sn		Next error
-‘sp		Previous error
-Folding
--------
-zc		Close fold
-zo		Open fold
-zM		Close all folds
-zR		Open all folds
-za		Toggle fold
-‘z		Toggle fold
