@@ -1,9 +1,13 @@
 My (@jboner) Vim config
-=======================
+#######################
 
 Setup Vim for Scala development and more.
 
 It has some pretty nice plugins and custom bindings/functions.
+
+Modules
+=======
+
 Here is a list of the main modules, but check out ./vimrc for details.
 
 - Scala
@@ -30,4 +34,16 @@ Here is a list of the main modules, but check out ./vimrc for details.
 
 Also check out the vim-custom-cheatsheet.txt for a reference. 
 
-Run: ./install.sh to install the config to ~/.vim_runtime
+Install
+=======
+
+1. Run ./install.sh to install the config to ~/.vim_runtime
+2. Create a .vimrc in your home directory::
+  fun! MySys()
+    return "$1"
+  endfun
+  set runtimepath=~/.vim_runtime,~/.vim_runtime/after,\$VIMRUNTIME
+  source ~/.vim_runtime/vimrc
+  helptags ~/.vim_runtime/doc
+
+
