@@ -38,7 +38,9 @@ Install
 =======
 
 1. Run ./install.sh to install the config to ~/.vim_runtime
-2. Create a .vimrc in your home directory::
+2. Create a .vimrc in your home directory
+
+.vimrc::
   fun! MySys()
     return "$1"
   endfun
