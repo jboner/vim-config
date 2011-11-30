@@ -38,4 +38,4 @@ Install
 =======
 
 1. Run ``./install.sh`` to install the config to ``~/.vim_runtime``.
-2. Copy the ``./.vimrc-for-home-dir`` file to your home directory and rename it to ``.vimrc``; ``cp ./.vimrc-for-home-dir ~/.vimrc``.
+2. Copy the ``./.vimrc-for-home-dir`` file to your home directory and rename it to ``.vimrc``. E.g. invoke: ``cp ./.vimrc-for-home-dir ~/.vimrc``.
