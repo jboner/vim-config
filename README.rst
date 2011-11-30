@@ -38,12 +38,10 @@ Install
 =======
 
 1. Run `./install.sh` to install the config to `~/.vim_runtime`
-2. Create a `.vimrc` in your home directory loading the `vimrc` in the root dir. 
-
-Here is a sample::  
-    fun! MySys()
-      return "$1"
-    endfun
-    set runtimepath=~/.vim_runtime,~/.vim_runtime/after,\$VIMRUNTIME
-    source ~/.vim_runtime/vimrc
-    helptags ~/.vim_runtime/doc
+2. Create a `.vimrc` in your home directory loading the `vimrc` in the root dir.   
+fun! MySys()
+  return "$1"
+endfun
+set runtimepath=~/.vim_runtime,~/.vim_runtime/after,\$VIMRUNTIME
+source ~/.vim_runtime/vimrc
+helptags ~/.vim_runtime/doc
