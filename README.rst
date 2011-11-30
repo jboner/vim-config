@@ -37,5 +37,4 @@ Also check out the ``./vim-custom-cheatsheet.txt`` for a reference.
 Install
 =======
 
-1. Run ``./install.sh`` to install the config to ``~/.vim_runtime``.
-2. Copy the ``./.vimrc-for-home-dir`` file to your home directory and rename it to ``.vimrc``; ``cp ./.vimrc-for-home-dir ~/.vimrc``.
+Run ``./install.sh`` to install the config to ``~/.vim_runtime`` and to create an ``.vimrc`` in your home directory.
