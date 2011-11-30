@@ -8,7 +8,7 @@ It has some pretty nice plugins and custom bindings/functions.
 Modules
 =======
 
-Here is a list of the main modules, but check out ./vimrc for details.
+Here is a list of the main modules, but check out ``./vimrc`` for details.
 
 - Scala
 - YankRing
@@ -32,10 +32,10 @@ Here is a list of the main modules, but check out ./vimrc for details.
 - ZoomWin
 - Git
 
-Also check out the vim-custom-cheatsheet.txt for a reference. 
+Also check out the ``./vim-custom-cheatsheet.txt`` for a reference. 
 
 Install
 =======
 
-1. Run `./install.sh` to install the config to `~/.vim_runtime`
-2. Copy the `./.vimrc` file to your home directory.
+1. Run ``./install.sh`` to install the config to ``~/.vim_runtime``.
+2. Copy the ``./.vimrc-for-home-dir`` file to your home directory and rename it to ``.vimrc``; ``cp ./.vimrc-for-home-dir ~/.vimrc``.
