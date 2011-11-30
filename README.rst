@@ -37,10 +37,10 @@ Also check out the vim-custom-cheatsheet.txt for a reference.
 Install
 =======
 
-1. Run ./install.sh to install the config to ~/.vim_runtime
-2. Create a .vimrc in your home directory
+1. Run `./install.sh` to install the config to `~/.vim_runtime`
+2. Create a `.vimrc` in your home directory loading the `vimrc` in the root dir. 
 
-.vimrc::  
+Here is a sample::  
     fun! MySys()
       return "$1"
     endfun
