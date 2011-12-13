@@ -42,6 +42,21 @@ C-h         Go to left window
 C-j         Go to upper window
 C-k         Go to lower window
 
+Fugitive
+--------
+:Gcommit
+:Gread
+:Gwrite
+:Gblame
+:Gbrowse
+:Gmove
+:Gremove
+:Gdiff
+:Gstatus
+:Ggrep
+:Gsplit | Gvsplit
+:Git
+
 Fuzzy Finder
 -----------
 ,t          Find file recursively from CWD
@@ -133,6 +148,7 @@ Misc
 gq<move>    Format section over ‘movement’
 ,w          Save buffer
 gg=G        Format the whole buffer
+=i{         Format all within the {..} block
 ,e          Edit vimrc
 ,t2         Set shiftwidth to 2 (t2 or t4)
 ,q          Open scratchpad
